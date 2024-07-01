@@ -4,10 +4,15 @@ from slack_sdk.errors import SlackApiError
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 
+import certifi
+
 load_dotenv()
 
 
 app = Flask(__name__)
+
+# Setup SSL certificates
+os.environ['SSL_CERT_FILE'] = certifi.where()
 
 slack_token = os.environ["SLACK_BOT_TOKEN"]
 slack_signing_secret = os.environ["SLACK_SIGNING_SECRET"]
